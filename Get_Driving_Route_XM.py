@@ -44,7 +44,7 @@ def get_driving_route(origin, destination):
 # given geo-address of a specific point. retrieve a panorama.
 def get_panorama(lng, lat, heading):
     _filename = 'pano@lng=' + str(lng) + 'lat=' + str(lat)
-    _dir = r'C:\Users\Xiangming Hao\Desktop\baiduMapCrawler\BSV\Panorama'
+    _dir = r'D://工作//AUDI_L3_WP1_Virtual_Drive//BSV//Panorama//'
     _path = _dir + _filename + '.jpeg'
     _ak = 'rxfKZPe9YAl4kRXfhqRcSWGh92i4rYW0'
     _url_prefix = r'http://api.map.baidu.com/panorama/v2?'
@@ -61,7 +61,7 @@ def get_panorama(lng, lat, heading):
 
 def get_static_view(lng, lat):
     _filename = 'static@lng=' + str(lng) + 'lat=' + str(lat)
-    _dir = r'C:\Users\Xiangming Hao\Desktop\baiduMapCrawler\BSV\StaticImage'
+    _dir = r'D://工作//AUDI_L3_WP1_Virtual_Drive//BSV//StaticImage//'
     _path = _dir + _filename + '.jpeg'
     _ak = 'rxfKZPe9YAl4kRXfhqRcSWGh92i4rYW0'
     _url_prefix = r'http://api.map.baidu.com/staticimage/v2?'
@@ -121,6 +121,11 @@ for step in steps:
         gps_url_list.append([pano_lng, pano_lat, pano_url])
     print(rd_path_sorted)
 print(len(gps_url_list))
+
+
+with open('your_file.txt', 'w') as f:
+    for item in gps_url_list:
+        f.write("%s\n" % item)
 # print(len(route_detailed['steps']))
 # steps_real = route_detailed['steps'][0]
 # print(steps_real)

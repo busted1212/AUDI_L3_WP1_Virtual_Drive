@@ -57,4 +57,6 @@ def analyze_ppt(input, output):
 
 if __name__ == "__main__":
     args = parse_args()
-    analyze_ppt('checkbox-test.ppt', 'checkbox-test-markup.ppt')
+    f = open('checkbox-test.ppt')
+    result = open('analyzed_ppt')
+    analyze_ppt(f, result)

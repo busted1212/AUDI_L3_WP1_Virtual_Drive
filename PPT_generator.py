@@ -1,12 +1,27 @@
 # -*- coding: utf-8 -*-
 
 import pptx
+from pptx.util import Inches, Pt
+
+# prs = pptx.Presentation('checkbox-test.pptm')
+# # select a layout template
+# graph_slide_layout = prs.slide_layouts[6]
+# # use the selected layout to create a new slide
+# slide_1 = prs.slides.add_slide(graph_slide_layout)
+# print(type(slide_1.shapes))
+# slide_2 = prs.slides.add_slide(graph_slide_layout)
+# prs.save('checkbox-test_new.pptm')
 
 
-template_BSV = pptx.Presentation('checkbox-test.pptm')
-sld = template_BSV.slides
-sld_0 = sld[0]
-print(type(sld_0))
-sld_0.add_slide()
-sld_0.shapes.add_picture('BSV1/lat=116.4544lng=39.959347.jpeg', 200, 200)
-template_BSV.save('new-checkbox-test.pptm')
+prs = pptx.Presentation('checkbox-test.pptm')
+first_slide = prs.slides[0]
+first_slide_layout = first_slide.slide_layout
+for shape in first_slide.placeholders:
+    print(shape.placeholder_format.idx)
+    print(shape.name)
+    #print('%d %s' % (shape.placeholder_format.idx, shape.name))
+placeholder_1 = first_slide.placeholders[13]
+
+#slide_1 = prs.slides.add_slide(first_slide)
+# do something with the content of the slides
+#prs.save('new-file-name.pptm')
