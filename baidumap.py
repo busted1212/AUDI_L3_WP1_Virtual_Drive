@@ -1,6 +1,7 @@
 from urllib.request import quote
 import requests
 import numpy
+import sys
 
 
 def get_geo_address(address):
@@ -75,3 +76,18 @@ def path_analyzer(path):
         _key_point = j.split(',')
         _path_sorted.append(_key_point)
     return _path_sorted
+
+
+def angle_calculate(point1, point2):
+    # given two geo-points(lng, lat), calculate the angle of the line between the two
+    # with respect to the the horizontal line
+    # type check
+    _lng_pt1 = point1[0]
+    _lat_pt1 = point1[1]
+    _lng_pt2 = point2[0]
+    _lat_pt2 = point2[1]
+    _x = numpy.sin(_lng_pt2 - _lng_pt1) * numpy.cos(_lat_pt2)
+    _y = numpy.cos(_lat_pt1) * numpy.sin(_lat_pt2) - numpy.sin(_lng_pt1) * numpy.cos(_lng_pt2)\
+         * numpy.cos(_lng_pt2 - _lng_pt1)
+    _A = numpy.arctan2(_x, _y)
+    _Bearing = numpy.mod(_A, 360)
